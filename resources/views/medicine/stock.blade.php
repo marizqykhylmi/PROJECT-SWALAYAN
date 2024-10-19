@@ -40,11 +40,11 @@
                         <div id="mgs"></div>
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nama Obat :</label>
+                            <label for="name" class="form-label">Nama Barang :</label>
                             <input type="text" class="form-control" id="name" name="name" disabled>
                         </div>
                         <div class="mb-3">
-                            <label for="stock" class="form-label">Stok Obat :</label>
+                            <label for="stock" class="form-label">Stok Barang :</label>
                             <input type="number" class="form-control" id="stock" name="stock">
                         </div>
                     </div>

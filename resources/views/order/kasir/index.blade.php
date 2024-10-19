@@ -1,10 +1,19 @@
+@extends('layouts.templates')
+@section('content')
+    <div class="container mt-3">
+        <div class="d-flex justify-content-end">
+            <a href="{{ route('kasir.order.create') }}" class="btn btn-primary">Pembelian Baru</a>
+        </div>
+    </div>
+@endsection
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Swalayan Mart</title>
+    <title>Swalayan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -34,14 +43,14 @@
                     </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="">Pembelian</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('kasir.order.create') }}">Pembelian</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{{ route('user.index') }}">Kelola Akun</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('kasir.order.create') }}">Pembelian</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('kasir.order.index') }}">Pembelian</a>
                             </li>
                         @endif
                     <li class="nav-item">

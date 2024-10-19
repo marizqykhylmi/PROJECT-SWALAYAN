@@ -14,22 +14,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // User::create([
+        //     'name' => 'Administrator Apotek',
+        //     'email' => 'Administrator@gmail.com',
+        //     'password' => Hash::make('adminapotek'),
+        //     'role' => 'admin'
+        // ]);
+
         User::create([
-            'name' => 'Administrator',
-            'email' => 'apotek_admin@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin'
+            'name' => 'Kasir Apotek',
+            'email' => 'kasir@gmail.com',
+            'password' => Hash::make('kasir'),
+            'role' => 'cashier'
         ]);
 
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 10; $i++) {
-            User::create([
-                'name' => $faker->name,
-                'email' => $faker->unique()->safeEmail,
-                'password' => Hash::make('password'),
-                'role' => 'cashier'
-            ]);
-        }
     }
+
 }

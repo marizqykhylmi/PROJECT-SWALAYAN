@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['tablet', 'sirup', 'kapsul']);
+            $table->enum('type', ['Makanan', 'minuman', 'bahan']);
             $table->string('name');
             $table->integer('price');
             $table->integer('stock');

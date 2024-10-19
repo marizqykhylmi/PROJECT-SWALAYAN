@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -45,7 +47,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('user.home')->with('success', 'User created successfully.');
+        return redirect()->route('user.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -93,7 +95,7 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('user.home')->with('success', 'User updated successfully.');
+        return redirect()->route('user.index')->with('success', 'User updated successfully.');
     }
 
     /**
@@ -104,5 +106,26 @@ class UserController extends Controller
         User::where('id', $id)->delete();
 
         return redirect()->back()->with('deleted', 'User berhasil dihapus!');
+    }
+
+
+    public function loginAuth(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email:dns',
+            'password' => 'required',
+        ]);
+        $user = $request->only(['email', 'password']);
+        if (Auth::attempt($user)) {
+            return redirect()->route('home.page');
+        }else{
+            return redirect()->back()->with('failed', 'proses login gagal, silahkan coba kembali dengan data yang benar!');
+        }
+    }
+
+    public function logout()
+    {
+    Auth::logout();
+    return redirect()->route('login')->with('logout', 'Anda telah logout!');
     }
 }

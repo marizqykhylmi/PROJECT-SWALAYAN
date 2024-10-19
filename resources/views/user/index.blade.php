@@ -4,7 +4,6 @@
         <h2 class="fw-bold">Daftar User</h2>
         <a href="{{ route('user.create') }}" class="btn btn-primary">Create New User</a>
     </div>
-
     @if (Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ Session::get('success') }}

@@ -44,7 +44,7 @@ class MedicineController extends Controller
             'stock' => $request->stock,
         ]);
 
-        return redirect()->back()->with('success', 'Berhasil menambahkan data obat!');
+        return redirect()->back()->with('success', 'Berhasil menambahkan data barang!');
     }
 
     /**
@@ -71,17 +71,21 @@ class MedicineController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3',
-            'type' => 'required',
+            'type' => 'required|string|max:50', // Sesuaikan dengan batasan panjang
             'price' => 'required|numeric',
+            
         ]);
+        
 
         Medicine::where('id', $id)->update([
             'name' => $request->name,
             'type' => $request->type,
             'price' => $request->price,
+            
+
         ]);
 
-        return redirect()->route('medicine.home')->with('success', 'Berhasil mengubah data obat!');
+        return redirect()->route('medicine.home')->with('success', 'Berhasil mengubah data barang!');
     }
 
     /**
@@ -90,7 +94,7 @@ class MedicineController extends Controller
     public function destroy(Medicine $medicine, $id)
     {
         Medicine::where('id', $id)->delete();
-        return redirect()->back()->with('deleted', 'Berhasil menghapus data obat!');
+        return redirect()->back()->with('deleted', 'Berhasil menghapus data barang!');
     }
 
     public function stock()
@@ -114,7 +118,7 @@ class MedicineController extends Controller
         $medicine = Medicine::find($id);
 
         if($request->stock <= $medicine['stock']){
-            return response()->json(['message' => 'Stok yang di input tidak boleh kurang dari stok sebrlumnya'],400);
+            return response()->json(['message' => 'Stok yang di input tidak boleh kurang dari stok sebelumnya'],400);
         }else{
             $medicine->update(['stock' => $request->stock]);
             return response()->json(['message' => 'Stok berhasil diubah'],200);
