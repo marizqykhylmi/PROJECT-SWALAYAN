@@ -1,7 +1,7 @@
     <?php
 
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\MedicineController;
+    use App\Http\Controllers\swalayanController;
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\LandingPageControllers;
@@ -61,16 +61,16 @@
         Route::middleware(['IsLogin'])->group(function(){
             
         Route::middleware(['IsAdmin'])->group(function() {
-            Route::prefix('/medicine')->name('medicine.')->group(function () {
-                Route::get('/', [MedicineController::class, 'index'])->name('home');
-                Route::get('/create', [MedicineController::class, 'create'])->name('create');
-                Route::post('/store', [MedicineController::class, 'store'])->name('store');
-                Route::get('/{id}', [MedicineController::class, 'edit'])->name('edit');
-                Route::patch('/{id}', [MedicineController::class, 'update'])->name('update');
-                Route::delete('/{id}', [MedicineController::class, 'destroy'])->name('delete');
-                Route::get('/data/stock', [MedicineController::class, 'stock'])->name('stock');
-                Route::get('/data/stock/{id}', [MedicineController::class, 'stockEdit'])->name('stock.edit');
-                Route::patch('/data/stock/{id}', [MedicineController::class, 'stockUpdate'])->name('stock.update');
+            Route::prefix('/swalayan')->name('swalayan.')->group(function () {
+                Route::get('/', [swalayanController::class, 'index'])->name('home');
+                Route::get('/create', [swalayanController::class, 'create'])->name('create');
+                Route::post('/store', [swalayanController::class, 'store'])->name('store');
+                Route::get('/{id}', [swalayanController::class, 'edit'])->name('edit');
+                Route::patch('/{id}', [swalayanController::class, 'update'])->name('update');
+                Route::delete('/{id}', [swalayanController::class, 'destroy'])->name('delete');
+                Route::get('/data/stock', [swalayanController::class, 'stock'])->name('stock');
+                Route::get('/data/stock/{id}', [swalayanController::class, 'stockEdit'])->name('stock.edit');
+                Route::patch('/data/stock/{id}', [swalayanController::class, 'stockUpdate'])->name('stock.update');
         
                 // //routing fitur kelola akun
                 // Route::prefix('/user')->name('user.')->group(function(){

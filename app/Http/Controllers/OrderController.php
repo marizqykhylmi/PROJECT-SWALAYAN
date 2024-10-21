@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-// use App\Http\Controllers\Medicine;
-use App\Models\Medicine;
+// use App\Http\Controllers\swalayan;
+use App\Models\swalayan;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -23,8 +23,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $medicine = Medicine::all();
-        return view("order.kasir.create", compact('medicine'));
+        $swalayan = swalayan::all();
+        return view("order.kasir.create", compact('swalayan'));
     }
 
     /**
@@ -34,29 +34,29 @@ class OrderController extends Controller
     {
         $request->validate([
             'name_customer' => 'required',   // Pastikan nama pelanggan tidak kosong
-            'medicines' => 'required|array',  // Pastikan medicines adalah array
+            'swalayans' => 'required|array',  // Pastikan swalayans adalah array
         ]);
 
-        $arrayDistinct = array_count_values($request->medicines);
+        $arrayDistinct = array_count_values($request->swalayans);
 
-        $arrayAssocMedicine = [];
+        $arrayAssocswalayan = [];
 
         foreach ($arrayDistinct as $id => $count) {
 
-            $medicine = Medicine::where('id', $id)->first();
-            $subPrice = $medicine['price'] * $count;
+            $swalayan = swalayan::where('id', $id)->first();
+            $subPrice = $swalayan['price'] * $count;
             $arrayItem = [
                 "id" => $id,
-                "name_medicine" => $medicine['name'],
+                "name_swalayan" => $swalayan['name'],
                 "qty" => $count,
-                "price" => $medicine['price'],
+                "price" => $swalayan['price'],
                 "sub_price" => $subPrice,
             ];
-            array_push($arrayAssocMedicine, $arrayItem);
+            array_push($arrayAssocswalayan, $arrayItem);
         }
 
         $totalPrice = 0;
-        foreach ($arrayAssocMedicine as $item) {
+        foreach ($arrayAssocswalayan as $item) {
             $totalPrice += (int)$item['sub_price'];
         }
 
@@ -64,7 +64,7 @@ class OrderController extends Controller
 
         $proses = Order::create([
             'user_id' => Auth::user()->id,
-            'medicines' => json_encode($arrayAssocMedicine),
+            'swalayans' => json_encode($arrayAssocswalayan),
             'name_customer' => $request->name_customer,
             'total_price' => $priceWithPPN
         ]);

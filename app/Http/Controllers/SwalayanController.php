@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicine;
+use App\Models\swalayan;
 use Illuminate\Http\Request;
 
-class MedicineController extends Controller
+class swalayanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $medicines = Medicine::simplePaginate(10);
-        return view('medicine.index', compact('medicines'));
+        $swalayans = swalayan::simplePaginate(10);
+        return view('swalayan.index', compact('swalayans'));
 
     }
 
@@ -22,7 +22,7 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        return view('medicine.create');
+        return view('swalayan.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class MedicineController extends Controller
             'stock' => 'required|numeric',
         ]);
 
-        Medicine::create([
+        swalayan::create([
             'name' => $request->name,
             'type' => $request->type,
             'price' => $request->price,
@@ -50,7 +50,7 @@ class MedicineController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Medicine $medicine)
+    public function show(swalayan $swalayan)
     {
         //
     }
@@ -60,14 +60,14 @@ class MedicineController extends Controller
      */
     public function edit($id)
     {
-        $medicine = Medicine::find($id);
-        return view('medicine.edit', compact('medicine'));
+        $swalayan = swalayan::find($id);
+        return view('swalayan.edit', compact('swalayan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Medicine $medicine, $id)
+    public function update(Request $request, swalayan $swalayan, $id)
     {
         $request->validate([
             'name' => 'required|min:3',
@@ -77,7 +77,7 @@ class MedicineController extends Controller
         ]);
         
 
-        Medicine::where('id', $id)->update([
+        swalayan::where('id', $id)->update([
             'name' => $request->name,
             'type' => $request->type,
             'price' => $request->price,
@@ -85,28 +85,28 @@ class MedicineController extends Controller
 
         ]);
 
-        return redirect()->route('medicine.home')->with('success', 'Berhasil mengubah data barang!');
+        return redirect()->route('swalayan.home')->with('success', 'Berhasil mengubah data barang!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Medicine $medicine, $id)
+    public function destroy(swalayan $swalayan, $id)
     {
-        Medicine::where('id', $id)->delete();
+        swalayan::where('id', $id)->delete();
         return redirect()->back()->with('deleted', 'Berhasil menghapus data barang!');
     }
 
     public function stock()
     {
-        $medicines = Medicine::orderBy('stock', 'ASC')->simplePaginate(10);
-        return view('medicine.stock', compact('medicines'));
+        $swalayans = swalayan::orderBy('stock', 'ASC')->simplePaginate(10);
+        return view('swalayan.stock', compact('swalayans'));
     }
 
     public function stockEdit($id)
     {
-        $medicine = Medicine::find($id);
-        return response()->json($medicine);
+        $swalayan = swalayan::find($id);
+        return response()->json($swalayan);
     }
 
     public function stockUpdate(Request $request, $id)
@@ -115,12 +115,12 @@ class MedicineController extends Controller
             'stock' => 'required|numeric',
         ]);
 
-        $medicine = Medicine::find($id);
+        $swalayan = swalayan::find($id);
 
-        if($request->stock <= $medicine['stock']){
+        if($request->stock <= $swalayan['stock']){
             return response()->json(['message' => 'Stok yang di input tidak boleh kurang dari stok sebelumnya'],400);
         }else{
-            $medicine->update(['stock' => $request->stock]);
+            $swalayan->update(['stock' => $request->stock]);
             return response()->json(['message' => 'Stok berhasil diubah'],200);
         }
     }

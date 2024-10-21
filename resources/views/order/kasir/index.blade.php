@@ -37,9 +37,9 @@
                       Barang
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ route('medicine.home') }}">Data Barang</a></li>
-                      <li><a class="dropdown-item" href="{{ route('medicine.create') }}">Tambah</a></li>
-                      <li><a class="dropdown-item" href="{{ route('medicine.stock') }}">Stok</a></li>
+                      <li><a class="dropdown-item" href="{{ route('swalayan.home') }}">Data Barang</a></li>
+                      <li><a class="dropdown-item" href="{{ route('swalayan.create') }}">Tambah</a></li>
+                      <li><a class="dropdown-item" href="{{ route('swalayan.stock') }}">Stok</a></li>
                     </ul>
                             </li>
                             <li class="nav-item">

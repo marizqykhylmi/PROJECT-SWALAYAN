@@ -28,17 +28,17 @@
             </div>
 
             <div class="mb-3 row">
-                <label for="medicines" class="col-sm-2 col-form-label">Barang</label>
+                <label for="swalayans" class="col-sm-2 col-form-label">Barang</label>
                 <div class="col-sm-10">
-                    {{-- name dibuat array karena nantinya data barang (medicines) akan berbentuk array/data bisa lebih dari satu --}}
-                    <select name="medicines[]" id="medicines" class="form-select">
+                    {{-- name dibuat array karena nantinya data barang (swalayans) akan berbentuk array/data bisa lebih dari satu --}}
+                    <select name="swalayans[]" id="swalayans" class="form-select">
                         <option selected hidden disabled>Pesanan 1</option>
-                        @foreach ($medicine as $item)
+                        @foreach ($swalayan as $item)
                             <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                         @endforeach
                     </select>    
                     {{-- div pembungkus untuk tambahan select yg akan muncul --}}
-                    <div id="wrap-medicines"></div>
+                    <div id="wrap-swalayans"></div>
                     <br>
                     <p style="cursor: pointer;" class="text-primary" id="add-select">+ tambah barang</p>
                 </div>
@@ -56,14 +56,14 @@
                         // ketika tag dengan id add-select di click jalankan func berikut
                         $("#add-select").on("click", function() {
                             // tag html yg akan ditambahkan/dimunculkan
-                            let el = `<br><select name="medicines[]" id="medicines" class="form-select">
+                            let el = `<br><select name="swalayans[]" id="swalayans" class="form-select">
                                         <option selected hidden disabled>Pesanan ${no}</option>
-                                        @foreach ($medicine as $item)
+                                        @foreach ($swalayan as $item)
                                             <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                                         @endforeach
                                     </select>`;
-                            // append : tambahkan element html di bagian sblm penutup tag terkait (sblm penutup tag yg id nya wrap-medicines)
-                            $("#wrap-medicines").append(el);
+                            // append : tambahkan element html di bagian sblm penutup tag terkait (sblm penutup tag yg id nya wrap-swalayans)
+                            $("#wrap-swalayans").append(el);
                             // increments variable no agar angka yg muncul di option selalu bertambah 1 sesuai jumlah selectnya
                             no++;
                         });

@@ -1,6 +1,6 @@
 @extends('layouts.templates')
 @section('content')
-    <form action="{{ route('medicine.store') }}" method="POST" class="card p-5">
+    <form action="{{ route('swalayan.store') }}" method="POST" class="card p-5">
         @csrf
 
         @if (Session::get('success'))
@@ -25,9 +25,9 @@
             <div class="col-sm-10">
                 <select name="type" id="type" class="form-select">
                     <option selected desabled hidden>Pilih</option>
-                    <option value="tablet">Makanan</option>
-                    <option value="sirup">Minuman</option>
-                    <option value="kapsul">Bahan Pokok</option>
+                    <option value="makanan">Makanan</option>
+                    <option value="minuman">Minuman</option>
+                    <option value="bahan">Bahan Pokok</option>
                 </select>
             </div>
         </div>

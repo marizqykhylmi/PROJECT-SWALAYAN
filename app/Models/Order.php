@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'medicines', 'name_customer', 'total_price'];
+    protected $fillable = ['user_id', 'swalayans', 'name_customer', 'total_price'];
 
-    protected $casts = ['medicines' => 'array'];
+    protected $casts = ['swalayans' => 'array'];
 }

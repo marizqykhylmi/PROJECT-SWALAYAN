@@ -11,9 +11,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($medicines as $index => $item)
+            @foreach ($swalayans as $index => $item)
                 <tr>
-                    <td>{{ ($medicines->currentPage() - 1) * $medicines->perPage() + ($index + 1) }}</td>
+                    <td>{{ ($swalayans->currentPage() - 1) * $swalayans->perPage() + ($index + 1) }}</td>
                     <td>{{ $item['name'] }}</td>
                     <td style="{{ $item['stock'] <= 3 ? 'background:red; color:white;' : 'background:none; color:black;' }}">{{ $item['stock'] }}</td>
                     <td class="d-flex justify-content-center">
@@ -25,7 +25,7 @@
         </tbody>
     </table>
     <div class="d-flex justify-content-end my-3">
-        {{ $medicines->links() }}
+        {{ $swalayans->links() }}
     </div>
 
     <div class="modal" tabindex="-1" id="edit-stock">
@@ -68,7 +68,7 @@
         });
 
         function edit(id) {
-            var url = "{{ route('medicine.stock.edit', ':id') }}";
+            var url = "{{ route('swalayan.stock.edit', ':id') }}";
             url = url.replace(':id', id);
             $.ajax({
                 type: 'GET',
@@ -87,7 +87,7 @@
             e.preventDefault();
 
             var id = $('#id').val();
-            var urlForm = "{{ route('medicine.stock.update', ":id") }}";
+            var urlForm = "{{ route('swalayan.stock.update', ":id") }}";
             urlForm = urlForm.replace(':id', id);
 
             var data = {

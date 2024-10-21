@@ -120,16 +120,16 @@
                         </td>
                     </tr>
                     
-                    @foreach(json_decode($order->medicines, true) as $medicine)
+                    @foreach(json_decode($order->swalayans, true) as $swalayan)
                     <tr class="service">
                         <td class="tableitem">
-                            <p class="itemtext">{{ $medicine['name_medicine'] }}</p>
+                            <p class="itemtext">{{ $swalayan['name_swalayan'] }}</p>
                         </td>
                         <td class="tableitem">
-                            <p class="itemtext">{{ $medicine['qty'] }}</p>
+                            <p class="itemtext">{{ $swalayan['qty'] }}</p>
                         </td>
                         <td class="tableitem">
-                            <p class="itemtext">Rp. {{ number_format($medicine['price'],0,',','.') }}</p>
+                            <p class="itemtext">Rp. {{ number_format($swalayan['price'],0,',','.') }}</p>
                         </td>
                     </tr>
                     @endforeach

@@ -21,16 +21,16 @@
             @php
                 $no = 1;
             @endphp
-            @foreach ($medicines as $index => $item)
+            @foreach ($swalayans as $index => $item)
                 <tr>
-                    <td>{{ ($medicines->currentPage() - 1) * $medicines->perPage() + ($index + 1) }}</td>
+                    <td>{{ ($swalayans->currentPage() - 1) * $swalayans->perPage() + ($index + 1) }}</td>
                     <td>{{ $item['name'] }}</td>
                     <td>{{ $item['type'] }}</td>
                     <td>{{ $item['price'] }}</td>
                     <td>{{ $item['stock'] }}</td>
                     <td class="d-flex justify-content-center">
-                        <a href="{{ route('medicine.edit', $item['id']) }}" class="btn btn-primary me-3">Edit</a>
-                        <form action="{{ route('medicine.delete', $item['id']) }}" method="POST"
+                        <a href="{{ route('swalayan.edit', $item['id']) }}" class="btn btn-primary me-3">Edit</a>
+                        <form action="{{ route('swalayan.delete', $item['id']) }}" method="POST"
                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus item ini?')">
                             @csrf
                             @method('DELETE')
@@ -42,6 +42,6 @@
         </tbody>
     </table>
         <div class="d-flex justify-content-end my-3">
-            {{ $medicines->links() }}
+            {{ $swalayans->links() }}
         </div>
 @endsection

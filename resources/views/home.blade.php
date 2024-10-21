@@ -26,6 +26,6 @@
             Digunakan untuk mengelola data barang, penyetokan, juga pembelian (kasir).
         </p>
         
-        <a href="{{ route('medicine.home') }}" class="btn btn-primary btn-lg">Mulai</a>
+        <a href="{{ route('swalayan.home') }}" class="btn btn-primary btn-lg">Mulai</a>
     </div>
 @endsection
